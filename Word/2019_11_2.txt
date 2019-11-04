@@ -1,0 +1,9 @@
+5
+scaffolding 0 1 
+scour 1 1 
+chapel 1 1 
+cololnize 0 1 
+duplicate 1 1 
+lettuce 0 1 
+attorney 0 1 
+exhale 1 1 

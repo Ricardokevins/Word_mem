@@ -1,0 +1,13 @@
+﻿  源.cpp
+D:\New_desktop\Word_mem\源.cpp(108,19): warning C4018:  “<”: 有符号/无符号不匹配
+D:\New_desktop\Word_mem\源.cpp(248,1): warning C4996:  'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Windows Kits\10\Include\10.0.17763.0\ucrt\time.h(506): message :  参见“localtime”的声明
+D:\New_desktop\Word_mem\源.cpp(256,1): warning C4996:  'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Windows Kits\10\Include\10.0.17763.0\ucrt\time.h(506): message :  参见“localtime”的声明
+D:\New_desktop\Word_mem\源.cpp(310,1): warning C4996:  'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Windows Kits\10\Include\10.0.17763.0\ucrt\time.h(506): message :  参见“localtime”的声明
+D:\New_desktop\Word_mem\源.cpp(471,20): warning C4018:  “<”: 有符号/无符号不匹配
+D:\New_desktop\Word_mem\源.cpp(488,19): warning C4018:  “<”: 有符号/无符号不匹配
+D:\New_desktop\Word_mem\源.cpp(526,19): warning C4018:  “<”: 有符号/无符号不匹配
+D:\New_desktop\Word_mem\源.cpp(534,36): warning C4018:  “>=”: 有符号/无符号不匹配
+  Word_mem.vcxproj -> D:\New_desktop\Word_mem\Debug\Word_mem.exe
