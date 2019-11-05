@@ -1,0 +1,18 @@
+0
+evaporate 0 1 
+abide 0 1 
+association 0 1 
+comprehensive 0 1 
+diversion 0 1 
+expressive 0 1 
+robust 1 1 
+shortcut 1 1 
+fragrant 0 1 
+blend 0 1 
+plunge 0 1 
+fir 1 1 
+propose 0 1 
+emit 0 1 
+fateful 0 1 
+repetition 0 1 
+abort 0 1 
