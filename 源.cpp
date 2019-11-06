@@ -20,6 +20,32 @@
 #include<io.h>
 #define print_lines 15
 using namespace std;
+void get_file_name(string path, vector<string>& files, string suffix)
+{
+	//获取文件名列表放到参数中的vector
+
+	long hFile = 0;
+	struct _finddata_t fileinfo;
+	string p;
+	//cout << path<< endl;
+	string suffix2 = "/*." + suffix;
+	if ((hFile = _findfirst(p.assign(path).append(suffix2).c_str(), &fileinfo)) != -1)
+	{
+		//cout << "sub" << endl;
+		do {
+			if ((fileinfo.attrib & _A_SUBDIR))
+			{
+				if (strcmp(fileinfo.name, ".") != 0 && strcmp(fileinfo.name, "..") != 0)
+					get_file_name(p.assign(path).append("/").append(fileinfo.name), files, suffix);
+			}
+			else
+			{
+				files.push_back(p.assign(path).append("/").append(fileinfo.name));
+			}
+		} while (_findnext(hFile, &fileinfo) == 0);
+		_findclose(hFile);
+	}
+}
 
 
 class Word {
@@ -106,7 +132,7 @@ int System::get_all_word()
 	Word mytempword;
 	get_file_name("./Word", file_name, "txt");
 	for (int i(0); i < file_name.size(); i++)
-	{	
+	{
 		ifstream infile;
 		infile.open(file_name[i]);
 		if (infile.fail())
@@ -169,7 +195,7 @@ int  System::run()
 		cout << "\t\t\t＋====================================================================＋\n";
 		rewind(stdin);
 		cin >> myword_book.file_path;
-		if (myword_book.file_path=="quit")
+		if (myword_book.file_path == "quit")
 		{
 			return 0;
 		}
@@ -214,8 +240,8 @@ int System::menu()
 		case 1:add_word(); break;
 		case 2:review_word(); break;
 		case 3:print_word(); break;
-		//case 4:search_word(); break;
-		case 5:delete_word(); break;		
+			//case 4:search_word(); break;
+		case 5:delete_word(); break;
 		case 6: return 0;
 		case 7:print_allword(); break;
 		default:cout << "输入有误，请重新输入" << endl;
@@ -241,13 +267,34 @@ void Word_Book::load_book()
 	mybook.clear();
 	ifstream infile;
 	if (file_path == "-")
-		return;
+	{
+		time_t t = time(NULL);
+		tm* tp = localtime(&t);
+		string name;
+		name += to_string(tp->tm_year + 1900) + "_" + to_string(tp->tm_mon + 1) + "_" + to_string(tp->tm_mday);
+		vector<string>file_name;
+		get_file_name("./Word", file_name, "txt");
+		int flag(0);
+		for (int i(0); i< file_name.size(); i++)
+		{
+			if (file_name[i] == "./Word/" + name + ".txt")
+			{
+				cout << "Today wordbook is existed. Do not add again!!!" << endl;
+				Sleep(2000);
+				file_path = name;
+				flag = 1;
+				break;
+			}
+		}
+		if (!flag)
+			return;
+	}
 	if (file_path == "0")
 	{
 		time_t t = time(NULL);
 		tm* tp = localtime(&t);
 		string name;
-		name += to_string(tp->tm_year + 1900) + "_" + to_string(tp->tm_mon + 1) + "_" + to_string(tp->tm_mday) ;
+		name += to_string(tp->tm_year + 1900) + "_" + to_string(tp->tm_mon + 1) + "_" + to_string(tp->tm_mday);
 		file_path = name;
 	}
 	if (file_path == "-1")
@@ -255,24 +302,24 @@ void Word_Book::load_book()
 		time_t t = time(NULL);
 		tm* tp = localtime(&t);
 		string name;
-		name += to_string(tp->tm_year + 1900) + "_" + to_string(tp->tm_mon + 1) + "_" + to_string(tp->tm_mday-1);
+		name += to_string(tp->tm_year + 1900) + "_" + to_string(tp->tm_mon + 1) + "_" + to_string(tp->tm_mday - 1);
 		file_path = name;
 	}
-	file_path = "./Word/" +file_path + ".txt";
+	file_path = "./Word/" + file_path + ".txt";
 	infile.open(file_path);
 	if (infile.fail())
 	{
 		cout << "文件导入失败!!!" << endl;
 		Sleep(2000);
-		return ;
+		return;
 	}
 	string mid;
 	infile >> mid;
 	if (mid.size() == 0)
 		review_time = 1;
 	else
-		review_time = stoi(mid)+1;
-	while( !infile.eof())
+		review_time = stoi(mid) + 1;
+	while (!infile.eof())
 	{
 		Word temp;
 		infile >> temp.word;
@@ -281,7 +328,7 @@ void Word_Book::load_book()
 		if (mid.size() == 0)
 			temp.forget_time = 0;
 		else
-			temp.forget_time=stoi(mid);
+			temp.forget_time = stoi(mid);
 		infile >> mid;
 		if (mid.size() == 0)
 			temp.review_times = 0;
@@ -309,7 +356,7 @@ void Word_Book::quit_book()
 		time_t t = time(NULL);
 		tm* tp = localtime(&t);
 		string name;
-		name += "./Word/"+to_string(tp->tm_year + 1900) +"_"+ to_string(tp->tm_mon + 1) +"_"+ to_string(tp->tm_mday)+".txt";
+		name += "./Word/" + to_string(tp->tm_year + 1900) + "_" + to_string(tp->tm_mon + 1) + "_" + to_string(tp->tm_mday) + ".txt";
 		file_path = name;
 	}
 	myoperate.open(file_path, ofstream::out);
@@ -317,12 +364,12 @@ void Word_Book::quit_book()
 	{
 		cout << "文件导出失败!!!" << endl;
 		Sleep(2000);
-		return ;
+		return;
 	}
 	int length(0);
-	length =mybook.size();
-	myoperate << to_string(review_time) ;
-	myoperate <<endl;
+	length = mybook.size();
+	myoperate << to_string(review_time);
+	myoperate << endl;
 	for (int i(0); i < length; i++)
 	{
 		string usage;
@@ -342,10 +389,10 @@ void Word_Book::quit_book()
 
 int System::print_single(Word& temp)
 {
-	cout << left << setw(30) << temp.word<< "|";
+	cout << left << setw(30) << temp.word << "|";
 	cout << left << setw(15) << temp.forget_time << "|";
 	cout << left << setw(15) << temp.review_times << "|";
-	cout << left << setw(15) << temp.fre*100<<"%" << "|";
+	cout << left << setw(15) << temp.fre * 100 << "%" << "|";
 	cout << endl;
 	return 0;
 }
@@ -367,7 +414,7 @@ int System::print_word()
 	cout << left << setw(15) << "忘记次数" << "|";
 	cout << left << setw(15) << "复习次数" << "|";
 	cout << left << setw(15) << "遗忘率" << "|";
-	cout<< endl;
+	cout << endl;
 	for (int i(-print_lines); i < 0 && (i + pagenum * print_lines) < songsize; i++)
 	{
 		Word temp = myword_book.mybook[i + pagenum * print_lines];
@@ -474,7 +521,6 @@ int System::add_word()
 			{
 				cout << "已经有这一个单词了了" << endl;
 				Sleep(1500);
-				return 0;
 			}
 		}
 		myword_book.mybook.push_back(tempa);
@@ -498,7 +544,7 @@ int System::review_word()
 			if (a == "y")
 			{
 				myword_book.mybook[i].review_times += 1;
-				myword_book.mybook[i].fre =(double) myword_book.mybook[i].forget_time / (double)myword_book.mybook[i].review_times;
+				myword_book.mybook[i].fre = (double)myword_book.mybook[i].forget_time / (double)myword_book.mybook[i].review_times;
 				break;
 			}
 			if (a == "n")
@@ -531,7 +577,7 @@ int System::delete_word()
 			break;
 		}
 	}
-	if (serielnumber<0 || serielnumber>=myword_book.mybook.size())
+	if (serielnumber < 0 || serielnumber >= myword_book.mybook.size())
 	{
 		cout << "没有找到，即将返回上一级" << endl;
 		Sleep(2000);
