@@ -1,1 +1,20 @@
-2
+4
+consequence 0 1 
+seasoning 0 1 
+patch 0 1 
+roam 0 1 
+obscure 1 1 
+diligently 0 1 
+sketch 0 1 
+drainage 0 1 
+pursue 0 1 
+poverty 0 1 
+costume 0 1 
+disproportionate 0 1 
+disperse 0 1 
+forerunner 1 1 
+imitation 0 1 
+whim 0 1 
+retail 0 1 
+heel 0 1 
+corresponding 0 1 
