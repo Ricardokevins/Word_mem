@@ -1,0 +1,20 @@
+2
+fragile 0 2 
+metabolism 0 2 
+veil 0 2 
+scrap 0 2 
+victor 0 2 
+recepter 0 2 
+radiant 0 2 
+merchandise 0 2 
+plight 0 2 
+elite 0 2 
+condenser 0 2 
+prone 0 2 
+peculiar 0 2 
+slash 0 2 
+corn 0 2 
+keen 0 2 
+reproduce 0 2 
+laser 0 2 
+recount 0 2 

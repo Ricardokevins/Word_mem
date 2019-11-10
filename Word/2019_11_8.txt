@@ -1,0 +1,23 @@
+2
+oyster 0 0 
+tragedy 0 0 
+transaction 0 0 
+apologetic 0 0 
+hazard 0 0 
+timidity 0 0 
+dwell 0 0 
+inhibit 0 0 
+denomination 0 0 
+precedent 0 0 
+lava 0 0 
+induce 0 0 
+civility 0 0 
+trail 0 0 
+roar 0 0 
+illusion 0 0 
+footnote 0 0 
+knapsack 0 0 
+ham 0 0 
+relevance 0 0 
+transaction 0 0 
+apologetic 0 0 
