@@ -1,0 +1,21 @@
+2
+elasticity 0 1 
+sundial 0 1 
+recur 0 1 
+decompose 0 1 
+precaution 0 1 
+stack 0 1 
+subsidy 0 1 
+deal 0 1 
+mold 0 1 
+debris 1 1 
+feat 0 1 
+rural 0 1 
+contradictory 0 1 
+intersect 0 1 
+dimensional 0 1 
+detergent 0 1 
+foremost 0 1 
+bestow 0 1 
+capable 0 1 
+stun 0 1 
